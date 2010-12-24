@@ -1,2 +1,12 @@
 1.0			9/29/2010		initial release
 1.0.1		10/18/2010	verifying jquery 1.4.3 compatibility
+
+1.1			11/24/2010	minor fix around closing the notification
+										adding the ability to stop the notification after N number of displays	(via http://github.com/jfolkins)
+										added support for specifying callback functions for when the notification slides in and slides out
+										included unit tests for new functionality
+										
+										
+TODO:
+	- Unit tests for SlideIn/SlideOut callback'
+	- Display notification at when a certain element has been viewed (rather than pixels)

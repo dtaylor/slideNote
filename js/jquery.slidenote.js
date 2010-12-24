@@ -23,10 +23,10 @@
 			var oDoc = $.browser.msie === true ? window : document;
 			$(oDoc).scroll(function() {
 				if($(this).scrollTop() === 0) {
-					opts.bIsClosed = false;
+					opts._bIsClosed = false;
 				}
 				if($(this).scrollTop() > opts.where) {
-					if(!$note.is(':visible') && !opts.bIsClosed) {
+					if(!$note.is(':visible') && !opts._bIsClosed) {
 						$note.trigger('slideIn');
 					}
 				} else if ($(this).scrollTop() < opts.where && $note.queue('fx')[0] !== 'inprogress') {
@@ -62,25 +62,43 @@
 		
 	}
 	
-	function _slideIn(evt, obj, opts) {	
-		var direction = opts.corner === 'right' ? { 'right' : 0 } : { 'left' : 0 } ;
-		$(obj).show().animate(direction, 1000, 'swing');
+	function _slideIn(evt, obj, opts) {		
+		if(opts.displayCount === -1 || opts._iCurrentDisplayCount < opts.displayCount) {
+			var direction = opts.corner === 'right' ? { 'right' : 0 } : { 'left' : 0 } ;
+			$(obj).show().animate(direction, 1000, 'swing', function() {
+			
+				if(opts.displayCount !== -1) {
+					opts._iCurrentDisplayCount++;
+				}
+				
+			if(opts.onSlideIn !== null) {
+				opts.onSlideIn();
+			}
+				
+			});
+		}
 	}
 	
 	function _slideOut(evt, obj, opts) {
 		
 		var direction = opts.corner === 'right' ? { 'right' : -1 * $(obj).outerWidth() } : { 'left' : -1 * $(obj).outerWidth() };
 		$(obj).animate(direction, 1000, 'swing', function() {
+			
 			if($.slideNoteCount === 1) {
 				$(obj).stop(true).hide();
 			} else {
 				$(obj).hide();
 			}
+			
+			if(opts.closeImage !== null && evt.target.id === $(obj).attr('id') + '_close') {
+				opts._bIsClosed = true;
+			}
+			
+			if(opts.onSlideOut !== null) {
+				opts.onSlideOut();
+			}
+			
 		});
-	
-		if(opts.closeImage !== null && evt.target.id === $(obj).attr('id') + '_close') {
-			opts.bIsClosed = true;
-		}
 		
 	}
 	
@@ -120,11 +138,15 @@
 		corner: 'right',
 		url: null,
 		container: '',
-		closeImage: null
+		closeImage: null,
+		displayCount: -1,
+		onSlideIn: null,
+		onSlideOut: null
 	};
 	
 	$.fn.slideNote.private = {
-		_bIsClosed: false
+		_bIsClosed: false,
+		_iCurrentDisplayCount: 0
 	}
 	
 })(jQuery);

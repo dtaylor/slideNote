@@ -23,12 +23,19 @@
 		<script type="text/javascript">
 $('#leftNote').slideNote({
 	corner: 'left',
-	where: 1000
+	where: 100,
+	onSlideIn: function() {
+		alert('opened the notification!');
+	},
+	onSlideOut: function() {
+		alert('do some work!');
+	}
 });
 
 $('#note').slideNote({ 
 	url: 'ajax.html',
-	closeImage: 'images/slidenote.close.png'
+	closeImage: 'images/slidenote.close.png',
+	displayCount: 1
 });
 		</script>
 	</body>

@@ -68,6 +68,27 @@ test("closeImage", function() {
 	equal(defaultCloseValue(), null, 'No close button should be displayed.');
 });
  
+test("displayCount", function() {
+	function defaultDisplayCountValue() {
+		return $.fn.slideNote.defaults.displayCount;
+	}
+	equal(defaultDisplayCountValue(), -1, 'No display count value is specified. The notification should not stop displaying.');
+});
+
+test("onSlideIn", function() {
+	function defaultOnSlideIn() {
+		return $.fn.slideNote.defaults.onSlideIn;
+	}
+	equal(defaultOnSlideIn(), null, 'No callback configured for the slide in event.');
+});
+
+test("onSlideOut", function() {
+	function defaultOnSlideOut() {
+		return $.fn.slideNote.defaults.onSlideOut;
+	}
+	equal(defaultOnSlideOut(), null, 'No callback configured for the slide out event.');
+});
+ 
 /*-------------------------------------------------------*
  * Specific Value Tests
  *-------------------------------------------------------*/
@@ -82,39 +103,67 @@ test("closeImage", function() {
 	}
 	equal(closeOption(), true, 'Verifies that the close button is added to the notification.');
 });
- 
+
 /*-------------------------------------------------------*
  * Event Tests
  *-------------------------------------------------------*/
 
 module("Event Tests");
 asyncTest("slideIn", function() {
+	$('#note').slideNote().trigger('slideIn');
 	setTimeout(function() {
-		$('#note').slideNote().trigger('slideIn');
-		start();
 		equal($('#note').is(':visible'), true, 'Verifies that the note is visible after the slideIn animation has fired.');
+		start();
 	}, 1000);
 });
 
 asyncTest("slideOut", function() {
+	$('#note').slideNote()
+		.trigger('slideIn')
+		.trigger('slideOut');
 	setTimeout(function() {
-		// This test needs some work as its based on CSS and not the true events.
-		$('#note').slideNote()
-			.css('display', 'block')
-			.trigger('slideOut');
+		equal($('#note').is(':visible'), false, 'Verifies that the note is invisible after the slideOut animation has fired.');
 		start();
-		equal($('#note').css('display') === 'none', false, 'Verifies that the note is invisible after the slideOut animation has fired.');
 	}, 3000);
 });
 
 asyncTest("closeImageEvent", function() {
+	$('#note').trigger('slideIn')
+		.children(':first')
+		.trigger('click');
 	setTimeout(function() {
-		$('#note').trigger('slideIn')
-				  .children(':first')
-				  .trigger('click');
-		start();
 		equal($('#note').css('display') === 'none', false, 'Verifies that the note is no longer visible once the close image has clicked.');
-	}, 4000);
+		start();
+	}, 1000);
+});
+
+asyncTest("slideInCallback", function() {
+	$('#note').slideNote({
+		onSlideIn: function() {
+			$('#note').addClass('slideIn');
+		}
+	}).trigger('slideIn');
+	setTimeout(function() {
+		equal($('#note').hasClass('slideIn'), true, 'Verifies that the note properly fires its slideIn callback.');
+		start();
+	}, 2000);
+});
+
+asyncTest('slideOutCallback', function() {
+	$('#note').slideNote({
+		onSlideOut: function() {
+			$('#note').addClass('slideOut');
+		}
+	}).trigger('slideIn')
+		.trigger('slideOut');
+		setTimeout(function() {
+			equal($('#note').hasClass('slideOut'), true, 'Verifies that the note properly fires its slideOut callback.');
+			start();
+		}, 3000);
+});
+
+asyncTest('displayCountTest', function() {
+	// TODO
 });
 
 /*-------------------------------------------------------*
