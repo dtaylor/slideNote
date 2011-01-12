@@ -4,7 +4,7 @@ HOW TO USE
 
 1.	Include SlideNote in the header of your page. Make sure it is included after jQuery
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
 	<script src="jquery.slidenote.js" type="text/javascript"></script>
 	
 2.	Apply the plugin to a single or set of elements.
@@ -26,7 +26,8 @@ OPTIONS
 
 where
 	specified how far down the user must scroll before the notification
-	slides into view
+	slides into view. if 0, the notification will display as soon as
+	the page loads.
 		
 corner			
 	controls from which side of the screen the notification will slide in
@@ -43,7 +44,17 @@ closeImage
 	displays the image at the specified URL. When clicked, it will slide the 
 	note out of view. The note will not display until the next time the user 
 	scrolls passed the <strong>where</strong> value.
+	
+displayCount
+	the number of times to display the notification. will no longer display
+	after the specified value has been reached.
 
+onSlideIn
+	a callback function to fire once the notification as slid into view
+	
+onSlideOut
+	a callback function to fire once the notification as slid into view
+	
 CONTACT ME
 
 Website: http://tommcfarlin.com
