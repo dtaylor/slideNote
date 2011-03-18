@@ -162,9 +162,11 @@ asyncTest('slideOutCallback', function() {
 		}, 3000);
 });
 
+/*
 asyncTest('displayCountTest', function() {
 	// TODO
 });
+*/
 
 /*-------------------------------------------------------*
  * Ajax Tests
