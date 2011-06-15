@@ -1,10 +1,11 @@
-SlideNote: A jQuery plugin for flexible, customizable sliding notifications.
+SlideNote
+A jQuery plugin for flexible, customizable sliding notifications.
 
 HOW TO USE
 
 1.	Include SlideNote in the header of your page. Make sure it is included after jQuery
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
 	<script src="jquery.slidenote.js" type="text/javascript"></script>
 	
 2.	Apply the plugin to a single or set of elements.

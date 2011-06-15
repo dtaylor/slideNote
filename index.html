@@ -3,7 +3,7 @@
 	<head profile="http://gmpg.org/xfn/11">
 		<link rel="stylesheet" type="text/css" href="css/slidenote.demo.css" media="screen" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.slidenote.css" media="screen" />
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 		<script type="text/javascript" src="js/jquery.slidenote.js"></script>
 		<title>slideNote Demo</title>
 	</head>
@@ -23,7 +23,7 @@
 		<script type="text/javascript">
 $('#leftNote').slideNote({
 	corner: 'left',
-	where: 100,
+	where: 25,
 	onSlideIn: function() {
 		alert('opened the notification!');
 	},
@@ -35,7 +35,8 @@ $('#leftNote').slideNote({
 $('#note').slideNote({ 
 	url: 'ajax.html',
 	closeImage: 'images/slidenote.close.png',
-	displayCount: 1
+	displayCount: 1,
+  where: 0
 });
 		</script>
 	</body>

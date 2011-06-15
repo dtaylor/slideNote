@@ -21,21 +21,30 @@
 			var $note = _init(this, opts);
 		
 			var oDoc = $.browser.msie === true ? window : document;
-			$(oDoc).scroll(function() {
-				if($(this).scrollTop() === 0) {
-					opts._bIsClosed = false;
-				}
-				if($(this).scrollTop() > opts.where) {
-					if(!$note.is(':visible') && !opts._bIsClosed) {
-						$note.trigger('slideIn');
-					}
-				} else if ($(this).scrollTop() < opts.where && $note.queue('fx')[0] !== 'inprogress') {
-					if($note.is(':visible')) {
-						$note.trigger('slideOut');
-					}
-				}
-			});
-			
+      if(opts.where <= 0) {
+      
+        opts._bIsClosed = false;
+        $note.trigger('slideIn');
+      
+      } else {
+      
+        $(oDoc).scroll(function() {
+          if($(this).scrollTop() === 0) {
+            opts._bIsClosed = false;
+          }
+          if($(this).scrollTop() > opts.where) {
+            if(!$note.is(':visible') && !opts._bIsClosed) {
+              $note.trigger('slideIn');
+            }
+          } else if ($(this).scrollTop() < opts.where && $note.queue('fx')[0] !== 'inprogress') {
+            if($note.is(':visible')) {
+              $note.trigger('slideOut');
+            }
+          }
+        });
+        
+      } // end if/else
+      
 		});
 		
 	};

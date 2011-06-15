@@ -1,16 +1,35 @@
-2.1		  3/17/2011		verifying jquery 1.5.1 compatibility
+2.2, 6/15/2011
+verifying jquery 1.6.1 compatibility
+improving sliding out note when where: 0
 
-2.0			1/14/2010		minor fix around closing the notification
-										
-										adding the ability to stop the notification after N number of displays	
-										(via http://github.com/jfolkins)
-										
-										added support for specifying callback functions for when the notification 
-										slides in and slides out
-										
-										added the ability to display a notification when the page loads
-										included unit tests for new functionality
-										
-1.0.1		10/18/2010	verifying jquery 1.4.3 compatibility
-										
-1.0			9/29/2010		initial release
+--
+
+2.1, 3/17/2011		
+verifying jquery 1.5.1 compatibility
+
+--
+
+2.0, 1/14/2010		
+
+minor fix around closing the notification
+
+adding the ability to stop the notification after N number of displays	
+(via http://github.com/jfolkins)
+
+added support for specifying callback functions for when the notification 
+slides in and slides out
+
+added the ability to display a notification when the page loads
+included unit tests for new functionality
+
+--
+
+1.0.1, 10/18/2010	
+
+verifying jquery 1.4.3 compatibility
+					
+--
+
+1.0, 9/29/2010		
+
+initial release
