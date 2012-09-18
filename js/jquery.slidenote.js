@@ -15,7 +15,7 @@
 		
 		$.slideNoteCount += this.length;
 		
-		var opts = $.extend({}, $.fn.slideNote.defaults, $.fn.slideNote.private, options);
+		var opts = $.extend({}, $.fn.slideNote.defaults, $.fn.slideNote._private, options);
 		return this.each(function() {
 			
 			var $note = _init(this, opts);
@@ -153,7 +153,7 @@
 		onSlideOut: null
 	};
 	
-	$.fn.slideNote.private = {
+	$.fn.slideNote._private = {
 		_bIsClosed: false,
 		_iCurrentDisplayCount: 0
 	}
